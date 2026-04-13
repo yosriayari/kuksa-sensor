@@ -1,0 +1,12 @@
+{
+  "server": "127.0.0.1:55555",
+  "timeout_ms": 10000,
+  "thread_pool_size": 4,
+  "signals": [
+    {
+      "path": "Vehicle.Speed",
+      "interval_ms": 100,
+      "values_file": "values.txt"
+    }
+  ]
+}
