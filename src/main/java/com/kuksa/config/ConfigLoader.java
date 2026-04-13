@@ -14,7 +14,6 @@ public final class ConfigLoader {
 
     private ConfigLoader() {}
 
-
     public static SensorConfig loadFromArgs(String[] args) throws IOException {
         String path = (args.length >= 1) ? args[0] : "sensor_config.json";
         return loadFromFile(path);
@@ -26,8 +25,6 @@ public final class ConfigLoader {
         validateAndClean(cfg);
         return cfg;
     }
-
-  
 
     private static void validateAndClean(SensorConfig cfg) {
         if (cfg == null) {
@@ -51,6 +48,9 @@ public final class ConfigLoader {
             }
             if (signal.interval_ms <= 0) {
                 throw new IllegalArgumentException("interval_ms must be > 0 for: " + signal.path);
+            }
+            if (signal.values_file == null || signal.values_file.isBlank()) {
+                throw new IllegalArgumentException("values_file is required for signal: " + signal.path);
             }
             valid.add(signal);
         }
